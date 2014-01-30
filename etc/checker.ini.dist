@@ -1,0 +1,13 @@
+# DSN
+dsn = sqlite:test.db
+
+# Количество потоков
+threads = 10
+
+# Метод сбора информации
+# GOOGLE - сбор информации через сайт google.com,
+# GOOGLE_API - сбор информации через google api
+engine = GOOGLE
+
+# Добавлять данные или очищать перед запуском
+appendResults = false
