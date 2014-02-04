@@ -6,12 +6,3 @@ spl_autoload_register(function ($class) {
 });
 
 
-try{
-    $config = new IniFileBasedConfig('etc/checker.ini');
-}catch(RequiredParameterNotFoundException $ex){
-    die($ex);
-}
-
-$dbh = new PDO($config->getDsn());
-
-$siteRepository = new SQLSiteRepository($dbh, $config->appendResults());
