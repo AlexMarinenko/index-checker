@@ -7,6 +7,7 @@ use Checker\Config\IniFileBasedConfig;
 use Checker\Config\RequiredParameterNotFoundException;
 use Checker\Data\SQLSiteRepository;
 use Checker\Input\FileDataSource;
+use Checker\Input\FileNotFoundException;
 
 set_time_limit(0);
 
@@ -17,14 +18,18 @@ if (count($argv) < 2){
 try{
     $config = new IniFileBasedConfig('etc/checker.ini');
 }catch(RequiredParameterNotFoundException $ex){
-    die($ex);
+    die($ex->getMessage()."\n");
 }
 
 $dbh = new PDO($config->getDsn());
 
 $siteRepository = new SQLSiteRepository($dbh, $config->appendResults());
 
-$inputDataSource = new FileDataSource('test.txt');
+try{
+    $inputDataSource = new FileDataSource($argv[1]);
+}catch(FileNotFoundException $ex){
+    die($ex->getMessage()."\n");
+}
 
 $checker = new Checker($config, $siteRepository, $inputDataSource);
 

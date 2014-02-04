@@ -34,6 +34,10 @@ class FileDataSource implements IInputDataSource{
      */
     private function initDataSource()
     {
-        $this->lines = array_reverse(file($this->fileName));
+        $file = @file($this->fileName);
+        if ($file === false){
+            throw new FileNotFoundException("File " . $this->fileName . " not found.");
+        }
+        $this->lines = array_reverse($file);
     }
 }
