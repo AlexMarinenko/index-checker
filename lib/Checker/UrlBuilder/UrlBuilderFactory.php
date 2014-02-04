@@ -4,7 +4,7 @@ namespace Checker\UrlBuilder;
 
 use Checker\SearchEngine;
 
-class UrlBuilderfactory{
+class UrlBuilderFactory{
 
     /**
      * Returns UrlBuilder according to selected SearchEngine

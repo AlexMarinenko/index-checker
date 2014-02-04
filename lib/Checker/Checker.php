@@ -9,7 +9,7 @@ use Checker\Downloader\MultiDownloader;
 use Checker\Input\IInputDataSource;
 use Checker\Parser\ParserFactory;
 use Checker\Parser\WrongResponseException;
-use Checker\UrlBuilder\UrlBuilderfactory;
+use Checker\UrlBuilder\UrlBuilderFactory;
 
 class Checker {
     /**
@@ -56,7 +56,7 @@ class Checker {
         $this->inputFileParser = $inputDataSource;
         $this->numThreads = $config->getThreads();
         $this->searchEngine = $config->getEngine();
-        $this->urlBuilder = UrlBuilderfactory::getBuilder($this->searchEngine);
+        $this->urlBuilder = UrlBuilderFactory::getBuilder($this->searchEngine);
         $this->contentParser = ParserFactory::getParser($this->searchEngine);
         $this->config = $config;
     }
